@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Currency Converter</title>
+    <!--<link rel="shortcut icon" href=">-->
+    <% if (process.env.NODE_ENV === 'production') { %>
+      <link rel="stylesheet" type="text/css" href="stylesheets/stylesGlobal.css">
+      <link rel="stylesheet" type="text/css" href="stylesheets/stylesLocal.css">
+    <% } %>
+</head>
+
+  <body>
+    <div id="app"></div>
+    <script src="bundle.js"></script>
+  </body>
+
+</html>

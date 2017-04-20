@@ -1,0 +1,7 @@
+src/dist/
+src/build
+node_modules/
+docs
+conf/*.local.json
+.vscode
+README_app.md
