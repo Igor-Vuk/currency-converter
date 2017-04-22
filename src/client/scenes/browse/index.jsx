@@ -31,7 +31,7 @@ class Browse extends Component {
       <div className="container">
         <div className="row justify-content-md-center">
           <div className="col-xs-5">
-            <form>
+            <form encType="multipart/form-data">
               {/* <div className="form-group">
                 <label htmlFor="dateInput">Date</label>
                 <input type="date" ref="date" className="form-control" id="dateInput" aria-describedby="emailHelp" placeholder="Enter date" />
