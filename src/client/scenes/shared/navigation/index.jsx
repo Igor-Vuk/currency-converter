@@ -17,20 +17,18 @@ class Navigation extends Component {
             <span className="navbar-toggler-icon" />
           </button>
           {/* navigation bar brend */}
-          <a className="navbar-brand" href="/">React Boilerplate</a>
+          <a className="navbar-brand" href="/">Currency Converter</a>
 
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
-              <IndexLink to="/" className="nav-item nav-link active" href="#">Home <span className="sr-only">(current)</span></IndexLink>
-              <Link to="/feature" className="nav-item nav-link" href="#">Feature</Link>
+              <IndexLink to="/" className="nav-item nav-link active" href="#">Analysis<span className="sr-only">(current)</span></IndexLink>
+              <Link to="/browse" className="nav-item nav-link" href="#">File Upload</Link>
             </div>
             <div className="navbar-nav ml-auto">
               <span className="navbar-text" styleName="nav-text">Made by <a href="https://github.com/Igor-Vuk" target="_blank">Igor Vukelic</a></span>
             </div>
           </div>
         </nav>
-
-        <h2 styleName="header">Navigation Scene - shared between the components</h2>
 
       </div>
     )

@@ -32,7 +32,8 @@ module.exports = {
     alias: {
       Container: path.resolve(__dirname, 'src/client/scenes/Container.js'),
       Navigation: path.resolve(__dirname, 'src/client/scenes/shared/navigation/index.jsx'),
-      Feature: path.resolve(__dirname, 'src/client/scenes/feature/index.jsx')
+      Browse: path.resolve(__dirname, 'src/client/scenes/browse/index.jsx'),
+      Analysis: path.resolve(__dirname, 'src/client/scenes/analysis/index.jsx')
     }
   },
   module: {
@@ -93,7 +94,6 @@ module.exports = {
       files: ['./dist/*.ejs'],
       proxy: 'http://localhost:3000',
       open: false,
-      tunnel: 'proba',
       browser: ['chrome', 'firefox']
     })
   ]

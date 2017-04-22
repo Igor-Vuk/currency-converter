@@ -8,6 +8,7 @@
 [options]
 module.name_mapper.extension='scss' -> '<PROJECT_ROOT>/flow/stub/cssModules.js'
 module.name_mapper='^Navigation\(.*\)$' -> '<PROJECT_ROOT>/src/client/scenes/shared/navigation/index.jsx\1'
-module.name_mapper='^Feature\(.*\)$' -> '<PROJECT_ROOT>/src/client/scenes/feature/index.jsx\1
+module.name_mapper='^Browse\(.*\)$' -> '<PROJECT_ROOT>/src/client/scenes/browse/index.jsx\1
+module.name_mapper='^Analysis\(.*\)$' -> '<PROJECT_ROOT>/src/client/scenes/analysis/index.jsx\1
 module.name_mapper='^Container\(.*\)$' -> '<PROJECT_ROOT>/src/client/scenes/Container.js\1'
 

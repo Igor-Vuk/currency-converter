@@ -5,3 +5,4 @@ docs
 conf/*.local.json
 .vscode
 README_app.md
+money.json
