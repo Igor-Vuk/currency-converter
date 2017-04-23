@@ -10,8 +10,7 @@ class Browse extends Component {
   constructor () {
     super()
     this.state = {
-      uploaded: false,
-      data: []
+      uploaded: false
     }
 
     const self = this
