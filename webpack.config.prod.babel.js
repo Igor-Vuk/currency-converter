@@ -33,8 +33,7 @@ module.exports = {
       Container: path.resolve(__dirname, 'src/client/scenes/Container.js'),
       Navigation: path.resolve(__dirname, 'src/client/scenes/shared/navigation/index.jsx'),
       Browse: path.resolve(__dirname, 'src/client/scenes/browse/index.jsx'),
-      Analysis: path.resolve(__dirname, 'src/client/scenes/analysis/index.jsx'),
-      ApiCall: path.resolve(__dirname, 'src/client/scenes/analysis/api.jsx')
+      ApiCall: path.resolve(__dirname, 'src/client/scenes/browse/api/api.jsx')
     }
   },
   module: {

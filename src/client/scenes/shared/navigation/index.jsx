@@ -20,10 +20,6 @@ class Navigation extends Component {
           <a className="navbar-brand" href="/">Currency Converter</a>
 
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div className="navbar-nav">
-              <IndexLink to="/" className="nav-item nav-link active" href="#">Analysis<span className="sr-only">(current)</span></IndexLink>
-              <Link to="/browse" className="nav-item nav-link" href="#">File Upload</Link>
-            </div>
             <div className="navbar-nav ml-auto">
               <span className="navbar-text" styleName="nav-text">Made by <a href="https://github.com/Igor-Vuk" target="_blank">Igor Vukelic</a></span>
             </div>
