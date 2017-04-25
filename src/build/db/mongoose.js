@@ -10,9 +10,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _mongoose2.default.Promise = global.Promise;
 
 if (process.env.NODE_ENV === 'development') {
-  _mongoose2.default.connect('mongodb://localhost:27017/ConverterApp');
+  _mongoose2.default.connect('process.env.HEROKU_URL');
 } else {
-  _mongoose2.default.connect('mongodb://igor:Ul3&Bzo9mQ@ds117311.mlab.com:17311/currency_converter');
+  _mongoose2.default.connect('mongodb://localhost:27017/ConverterApp');
 }
 
 module.exports = {
