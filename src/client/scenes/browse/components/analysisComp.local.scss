@@ -1,2 +1,30 @@
 .container {
+  h3 {
+    text-align: center;
+  }
+
+  .sum {
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  table {
+    background-color: rgb(234, 238, 255);
+  }
+  table input {
+    border: none;
+    background-color: transparent;
+    text-align: left;
+    font-size: 1.2rem;
+  }
+  table th {
+    text-align: center;
+  }
+  table td {
+    text-align: right;
+  }
+  .rowDate {
+    text-align: center;
+  }
 }
