@@ -12,7 +12,7 @@ _mongoose2.default.Promise = global.Promise;
 if (process.env.NODE_ENV === 'development') {
   _mongoose2.default.connect('mongodb://localhost:27017/ConverterApp');
 } else {
-  _mongoose2.default.connect('process.env.DATABASE_URL');
+  _mongoose2.default.connect('mongodb://igor:Ul3&Bzo9mQ@ds117311.mlab.com:17311/currency_converter');
 }
 
 module.exports = {
