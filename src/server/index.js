@@ -1,25 +1,25 @@
-/* @flow */
-
+// Imports
 import Express from 'express'
 import path from 'path'
-import mongoose from './db/mongoose'
-/* import bodyParser from 'body-parser' */
-import multer from 'multer'
-import conf from './conf'
 import fs from 'fs'
+import multer from 'multer'
+import mongoose from './db/mongoose'
+import conf from './conf'
 import Exchange from './models/exchange'
 
-const APP_PORT: number = conf.APP_PORT
-const PORT: any = process.env.PORT || APP_PORT
-const app: Express = new Express()
+const APP_PORT = conf.APP_PORT
+const PORT = process.env.PORT || APP_PORT
+const app = new Express()
 
-var dateObj = new Date()
-var month = dateObj.getUTCMonth() + 1
-var day = dateObj.getUTCDate()
-var year = dateObj.getUTCFullYear()
-var newDate = year + '.' + month + '.' + day + '.'
-var date = newDate
+// Configure current Date
+const dateObj = new Date()
+const month = dateObj.getUTCMonth() + 1
+const day = dateObj.getUTCDate()
+const year = dateObj.getUTCFullYear()
+const newDate = year + '.' + month + '.' + day + '.'
+const date = newDate
 
+// Configure Multer save destination and custom filename
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads/')
@@ -30,45 +30,47 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage })
 
-
 // Middleware
-/*
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: true}))
-*/
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.use(Express.static(path.join(__dirname, '../', 'dist')))
 
 // Routes
+// -----------------------
 
+// keeps the name of the last uploaded file
 var uploadedFileName = ''
 
+// GET ROUTE
 app.get('/exchange', (req, res) => {
-  console.log(uploadedFileName)
   Exchange.find({'name': uploadedFileName}, function (err, AllFiles) {
     if (err) {
       console.log(err)
     } else {
-      res.send(AllFiles)
+      if (AllFiles.length > 0) {
+        res.send(AllFiles)
+      }
     }
   })
 })
 
+// POST ROUTE
 app.post('/exchange', upload.single('file'), function (req, res, next) {
   const readFile = fs.readFileSync(req.file.path, 'utf8')
   uploadedFileName = req.file.filename
-  console.log(req.file)
   const parseFile = JSON.parse(readFile)
 
   parseFile.exchange.map(function (fullExchange) {
-    var newExchange = new Exchange()
+    // save to mongodb
+    const newExchange = new Exchange()
     newExchange.currency = fullExchange.currency
     newExchange.amount = fullExchange.amount
     newExchange.name = req.file.filename
     newExchange.date = date
     newExchange.save()
   })
+  // send response after done saving to mongo
+  res.send('response')
 })
 
 app.get('*', function (req: Object, res: Object) {

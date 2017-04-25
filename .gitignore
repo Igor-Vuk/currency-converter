@@ -5,6 +5,6 @@ docs
 conf/*.local.json
 .vscode
 README_app.md
-money.json
-fruits.json
+exchange.json
+exchange2.json
 uploads/

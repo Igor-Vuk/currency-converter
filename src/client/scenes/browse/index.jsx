@@ -1,4 +1,3 @@
-/* @flow */
 /* eslint "jsx-quotes": ["error", "prefer-double"] */   // eslint rule to prefer doublequotes inside html tags
 
 import React, { Component } from 'react'
@@ -6,7 +5,6 @@ import UploadComp from './components/UploadComp'
 import AnalysisComp from './components/AnalysisComp'
 
 class Browse extends Component {
-
   constructor () {
     super()
     this.state = {
@@ -23,8 +21,8 @@ class Browse extends Component {
     })
   }
 
-  render (): React.Element<any> {
-    var {uploaded} = this.state
+  render () {
+    const {uploaded} = this.state
     function renderData () {
       if (uploaded === true) {
         return (

@@ -1,16 +1,12 @@
-/* @flow */
 /* eslint "jsx-quotes": ["error", "prefer-double"] */   // eslint rule to prefer doublequotes inside html tags
 
 import React, { Component } from 'react'
-import {Link, IndexLink} from 'react-router'
 import './index.local.scss'
 
 class Navigation extends Component {
-  render (): React.Element<any> {
+  render () {
     return (
       <div styleName="container">
-        {/* For Demonstration purpose */}
-
         <nav className="navbar navbar-toggleable-sm navbar-light bg-faded" styleName="nav-bar">
           {/* hamburger menu on small screen size */}
           <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +17,7 @@ class Navigation extends Component {
 
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav ml-auto">
-              <span className="navbar-text" styleName="nav-text">Made by <a href="https://github.com/Igor-Vuk" target="_blank">Igor Vukelic</a></span>
+              <span className="navbar-text" styleName="nav-text">Made by <a href="https://github.com/Igor-Vuk/currency-converter" target="_blank">Igor Vukelic</a></span>
             </div>
           </div>
         </nav>

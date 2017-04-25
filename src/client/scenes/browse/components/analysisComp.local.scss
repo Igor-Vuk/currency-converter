@@ -1,6 +1,27 @@
+$lightblue: #70C0F3;
+$hoverblue: #6ab7e8;
+$background-color: rgb(234, 238, 255);
+
 .container {
   h3 {
     text-align: center;
+  }
+
+  .button-select {
+    width: 100%;
+    background-color: $lightblue;
+    font-size: 1.4rem;
+    padding: 5px;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: $hoverblue;
+    }
+
+    &:active {
+      position: relative;
+      top: 2px;
+    }
   }
 
   .sum {
@@ -10,21 +31,26 @@
   }
 
   table {
-    background-color: rgb(234, 238, 255);
+    background-color: $background-color;
   }
+
   table input {
     border: none;
     background-color: transparent;
     text-align: left;
     font-size: 1.2rem;
   }
+
   table th {
     text-align: center;
   }
+
   table td {
     text-align: right;
   }
+
   .rowDate {
     text-align: center;
   }
+
 }

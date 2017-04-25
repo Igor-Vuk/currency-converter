@@ -1,9 +1,7 @@
-/* @flow */
 /* eslint "jsx-quotes": ["error", "prefer-double"] */   // eslint rule to prefer doublequotes inside html tags
 
 import React, { Component } from 'react'
 import ApiCall from 'ApiCall'
-import axios from 'axios'
 import fx from 'money'
 import update from 'immutability-helper'
 import './analysisComp.local.scss'
@@ -13,9 +11,9 @@ class AnalysisComp extends Component {
     super()
     this.state = {
       data: [],
+      changeData: [],
       rates: {},
       newCurrency: '',
-      changeArray: [],
       sum: ''
     }
     const self = this
@@ -24,31 +22,32 @@ class AnalysisComp extends Component {
     self.changeCurrency = this.changeCurrency.bind(this)
   }
 
+  /* make api request to fetch data from mongodb on first render */
   componentWillMount () {
     ApiCall.getFile().then(data => {
-      console.log(data)
       this.setState({
-        data: data
+        data
       })
     })
-
-    axios.get('http://api.fixer.io/latest').then((res) => {
-      this.setState({rates: res.data.rates})
+    // make api request to get the currents rates
+    ApiCall.getRates().then(data => {
+      this.setState({
+        rates: data.rates
+      })
     })
   }
 
+  /* make api request to fetch data from mongodb on every other render(file upload) except first */
   componentWillReceiveProps () {
     ApiCall.getFile().then(data => {
-      console.log(data)
       this.setState({
-        data: data
+        data
       })
     })
   }
 
   changeCurrency (event) {
-    console.log(event)
-
+    /* designate base currency and get the current rates from the state */
     fx.base = 'EUR'
     fx.rates = {
       'EUR': 1,
@@ -58,33 +57,33 @@ class AnalysisComp extends Component {
       'JPY': this.state.rates.JPY,
       'USD': this.state.rates.USD
     }
+    /* set the state for a chosen currency */
     this.setState({
       newCurrency: event.target.value
     }, () => {
-      var changeArray = []
+      /* inside of callback of setState make a currency conversion */
+      let changeData = []
       this.state.data.map((dataState) => {
-        var amount = dataState.amount
-        var currency = dataState.currency
-        var newCurrency = this.state.newCurrency
-        var newAmount = fx.convert(amount, {from: currency, to: newCurrency})
-        var change = update(dataState, {
+        let amount = dataState.amount
+        let currency = dataState.currency
+        let newCurrency = this.state.newCurrency
+        let newAmount = fx.convert(amount, {from: currency, to: newCurrency})
+        /* use immutable data structure to merge state from data with new amount and new chosen currency */
+        let change = update(dataState, {
           $merge: {amount: newAmount, currency: newCurrency}
         })
-        changeArray.push(change)
 
-        /* newAmounts.push(newAmount) */
+        changeData.push(change)
       })
-      console.log(changeArray)
-
       this.setState({
-        changeArray: changeArray
+        changeData
       })
     })
   }
 
-
-  render (): React.Element<any> {
+  render () {
     return (
+      /* className = bootstrap classes; styleName = cssModules */
       <div className="container" styleName="container">
 
         <table className="table table-striped table-bordered container">
@@ -93,10 +92,10 @@ class AnalysisComp extends Component {
               <th>Date</th>
               <th>Currency</th>
               <th>Amount</th>
-
             </tr>
           </thead>
           <tbody>
+            {/* map through data state and set the values */}
             {this.state.data.map(row => {
               return (
                 <tr key={row._id}>
@@ -106,11 +105,11 @@ class AnalysisComp extends Component {
                 </tr>
               )
             })}
-
           </tbody>
+
         </table>
         <h3>Currency Switcher</h3>
-        <select onChange={this.changeCurrency} className="btn btn-primary btn-lg btn-block custom-select">
+        <select onChange={this.changeCurrency} styleName="button-select">
           <option defaultValue value="EUR">European Euro (EUR)</option>
           <option value="CAD">Canadian Dollar (CAD)</option>
           <option value="CHF">Swiss Franc (CHF)</option>
@@ -128,7 +127,7 @@ class AnalysisComp extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.changeArray.map(row => {
+            {this.state.changeData.map(row => {
               return (
                 <tr key={row._id}>
                   <td styleName="rowDate">{row.date}</td>
@@ -142,20 +141,14 @@ class AnalysisComp extends Component {
               <td />
               <td styleName="sum">
                 <span>
-                  {this.state.changeArray.reduce((sum, number) => {
+                  {this.state.changeData.reduce((sum, number) => {
                     return Math.round((sum + number.amount) * 100) / 100
                   }, 0)}
                 </span>
               </td>
             </tr>
-
           </tbody>
         </table>
-
-
-
-
-
 
       </div>
     )
@@ -163,31 +156,3 @@ class AnalysisComp extends Component {
 }
 
 export default AnalysisComp
-
-
-{/*<td key={row._id}>
-  {this.state.data.map(row => {
-    return (
-      <input type="text" value={row.currency} disabled /></td>
-    )
-  })}
-</td>*/}
-
-
-
-/*  var sum = this.state.changeArray.reduce((sum, number) => {
-    console.log(sum)
-    return sum + number.amount
-  }, 0)
-*/
-
-/*
-, () => {
-      var sum = this.state.changeArray.reduce((sum, number) => {
-        return sum + number.amount
-      }, 0)
-      console.log("Sum", sum)
-      this.setState({
-        sum: sum
-      })
-    }*/

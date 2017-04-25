@@ -1,8 +1,7 @@
-/* @flow */
 /* eslint "jsx-quotes": ["error", "prefer-double"] */   // eslint rule to prefer doublequotes inside html tags
 
 import React, { Component } from 'react'
-import fetch from 'isomorphic-fetch'
+import axios from 'axios'
 import './uploadComp.local.scss'
 
 class UploadComp extends Component {
@@ -19,31 +18,23 @@ class UploadComp extends Component {
   dropHandler (event) {
     event.preventDefault()
     let fileUpload = event.target.files[0]
-    console.log(fileUpload)
     let formData = new FormData()
     formData.append('file', fileUpload)
-
-    fetch('/exchange', {
-      method: 'post',
-      body: formData
+    /* send form data and upon receiving response call onUpload prop passed down from index component */
+    axios.post('/exchange', formData).then((res) => {
+      this.props.onUpload()
     })
-    this.props.onUpload()
   }
 
-  render (): React.Element<any> {
+  render () {
     return (
+      /* className = bootstrap classes; styleName = cssModules */
       <div className="container" styleName="container">
-        <div className="row justify-content-md-center">
-          <div className="col-xs-5">
-            <form encType="multipart/form-data">
-              <div className="form-group">
-                <label htmlFor="fileInput">File input</label>
-                <input type="file" name="file" accept=".json" className="form-control-file" id="fileInput" aria-describedby="fileHelp" onChange={this.dropHandler} />
-                <small id="fileHelp" className="form-text text-muted">Upload JSON file format</small>
-              </div>
-            </form>
-          </div>
-        </div>{/* row */}
+        <div className="fileInput">
+          <label htmlFor="fileInput">File input</label>
+          <input type="file" name="file" accept=".json" onChange={this.dropHandler} />
+          <small id="fileHelp" className="form-text text-muted">Upload JSON file format</small>
+        </div>
       </div>
     )
   }

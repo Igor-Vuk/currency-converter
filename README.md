@@ -42,8 +42,3 @@
 
 * `yarn run start-dev` will set NODE_ENV = development and start the server using `nodemon` on port **3000**
 * `yarn run webpack` will start the webpack in `watch mode`, make a bundle directory `dist`, start the `browsersync` and automatic reloading and run the app on port **3002**
-
-### HELPER SCRIPTS ###
-
-* `yarn run flow` will run flow check
-* `yarn run standard` will run standard.js check
