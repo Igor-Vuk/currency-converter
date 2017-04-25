@@ -12,7 +12,7 @@ _mongoose2.default.Promise = global.Promise;
 if (process.env.NODE_ENV === 'development') {
   _mongoose2.default.connect('mongodb://localhost:27017/ConverterApp');
 } else {
-  _mongoose2.default.connect('process.env.HEROKU_URL');
+  _mongoose2.default.connect(process.env.HEROKU_URL);
 }
 
 module.exports = {
