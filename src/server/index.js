@@ -21,10 +21,10 @@ const date = newDate
 
 // Configure Multer save destination and custom filename
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
+  destination: (req, file, cb) => {
     cb(null, 'uploads/')
   },
-  filename: function (req, file, cb) {
+  filename: (req, file, cb) => {
     cb(null, date + '(' + Date.now() + ')' + '-' + file.originalname)
   }
 })
@@ -43,7 +43,7 @@ var uploadedFileName = ''
 
 // GET ROUTE
 app.get('/exchange', (req, res) => {
-  Exchange.find({'name': uploadedFileName}, function (err, AllFiles) {
+  Exchange.find({'name': uploadedFileName}, (err, AllFiles) => {
     if (err) {
       console.log(err)
     } else {
@@ -55,12 +55,12 @@ app.get('/exchange', (req, res) => {
 })
 
 // POST ROUTE
-app.post('/exchange', upload.single('file'), function (req, res, next) {
+app.post('/exchange', upload.single('file'), (req, res, next) => {
   const readFile = fs.readFileSync(req.file.path, 'utf8')
   uploadedFileName = req.file.filename
   const parseFile = JSON.parse(readFile)
 
-  parseFile.exchange.map(function (fullExchange) {
+  parseFile.exchange.map(fullExchange => {
     // save to mongodb
     const newExchange = new Exchange()
     newExchange.currency = fullExchange.currency
@@ -73,10 +73,10 @@ app.post('/exchange', upload.single('file'), function (req, res, next) {
   res.send('response')
 })
 
-app.get('*', function (req: Object, res: Object) {
+app.get('*', (req, res) => {
   res.render('index')
 })
 
-app.listen(PORT, function () {
+app.listen(PORT, () => {
   console.log(`Express server is up on port ${PORT}`)
 })

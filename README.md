@@ -1,20 +1,32 @@
 # Currency converter #
 
+## Upload a JSON file that has amount and currency. Choose a new currency and convert all of the currencies inside the file to a chosen one with a single click ##
+
+## Supported currencies ##
+
+* EUR
+* CAD
+* CHF
+* GBP
+* JPY
+* USD
+* new ones can be added quite easy
+
+* Example of the JSON file that can be uploaded is inside `src/client/styles/asset/exchange.json`
+
 ## Inital Setup Features ##
 
 * ES6
 * Babel
-* Bootstrap 4 & Mixins
+* Bootstrap 4
 * CSS Modules
-* PostCSS, CSS Variables and autoprefixer
+* PostCSS and autoprefixer
 * webpack.config (development & production mode)
 * Browsersync
 * Express
 * EJS
 * SASS
-* Flow.js
 * ESLint
-* standard.js
 * yarn.lock
 * .editorconfig
 
@@ -36,7 +48,7 @@
 
 * `yarn run build-server`  will bundle server for production using `babel` and make a `build` folder
 * `yarn run build-client` will bundle client for production using `webpack` and make a `dist` folder
-* `yarn run start` set NODE_ENV = production and start the app on port **3001** (build server and client first)
+* `yarn run start` set NODE_ENV = production and start the app on port **3004** (build server and client first)
 
 ### IN DEVELOPMENT ###
 

@@ -21,7 +21,7 @@ class UploadComp extends Component {
     let formData = new FormData()
     formData.append('file', fileUpload)
     /* send form data and upon receiving response call onUpload prop passed down from index component */
-    axios.post('/exchange', formData).then((res) => {
+    axios.post('/exchange', formData).then(res => {
       this.props.onUpload()
     })
   }

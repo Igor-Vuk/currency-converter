@@ -63,7 +63,7 @@ class AnalysisComp extends Component {
     }, () => {
       /* inside of callback of setState make a currency conversion */
       let changeData = []
-      this.state.data.map((dataState) => {
+      this.state.data.map(dataState => {
         let amount = dataState.amount
         let currency = dataState.currency
         let newCurrency = this.state.newCurrency
